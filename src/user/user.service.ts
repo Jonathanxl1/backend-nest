@@ -1,4 +1,8 @@
-import { ForbiddenException, Injectable } from '@nestjs/common';
+import {
+  ForbiddenException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { DbService } from 'src/db/db.service';
 import { UserDTO } from './dto/user.dto';
 import { PrismaClientKnownRequestError } from '@prisma/client/runtime/library';
@@ -20,5 +24,14 @@ export class UserService {
         }
       }
     }
+  }
+
+  async findUser(email: UserDTO['email']) {
+    let user = await this.prisma.user.findUnique({ where: { email } });
+    if (!user) {
+      throw new NotFoundException('Not Found Email');
+    }
+
+    return user;
   }
 }
