@@ -1,6 +1,7 @@
-import { Injectable } from '@nestjs/common';
+import { ForbiddenException, Injectable } from '@nestjs/common';
 import { DbService } from 'src/db/db.service';
 import { UserDTO } from './dto/user.dto';
+import { PrismaClientKnownRequestError } from '@prisma/client/runtime/library';
 
 @Injectable()
 export class UserService {
@@ -8,7 +9,16 @@ export class UserService {
 
   async createUser(body: UserDTO) {
     let { email, password } = body;
-    let user = await this.prisma.user.create({ data: { email, password } });
-    return user;
+
+    try {
+      let user = await this.prisma.user.create({ data: { email, password } });
+      return user;
+    } catch (err) {
+      if (err instanceof PrismaClientKnownRequestError) {
+        if (err.code === 'P2002') {
+          throw new ForbiddenException('Email alredy registered');
+        }
+      }
+    }
   }
 }
