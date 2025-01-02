@@ -6,4 +6,8 @@ import { UserService } from 'src/user/user.service';
 export class AuthService {
   constructor(private userService: UserService) {}
 
+
+  async signUp({ email, password }: AuthDTO) {
+    return this.userService.createUser({ email, password });
+  }
 }
