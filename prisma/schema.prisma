@@ -24,3 +24,19 @@ model User {
   @@map("users")
 }
 
+model Delegation {
+  id          Int      @id @default(autoincrement())
+  name        String
+  email       String   @unique
+  description String?
+  city_id     Int
+  latitude    Int
+  longitude   Int
+  phone       String?
+  address     String?
+  image       String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("delegations")
+}
