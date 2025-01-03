@@ -1,7 +1,9 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 
 import { join } from 'path';
-import { readFileSync } from 'fs';
+import { promises as fs } from 'fs';
+
+import dataJson from './data.json'; // keep it to load Json route
 
 import { CountryDTO, StateDTO } from './dto/locations.dto';
 
@@ -12,10 +14,14 @@ export class LocationsService {
     this.loadFile();
   }
 
-  loadFile() {
-    const filePath = join(__dirname, 'data.json'); // Adjust the path as needed
-    const fileContent = readFileSync(filePath, 'utf-8');
-    this.loadData = JSON.parse(fileContent); // Parse the JSON content into a JavaScript object
+  async loadFile() {
+    try {
+      const filePath = join(__dirname, 'data.json'); // Adjust the path as needed
+      const fileContent = await fs.readFile(filePath, 'utf-8');
+      this.loadData = JSON.parse(fileContent);
+    } catch (err) {
+      console.error(err);
+    }
   }
 
   getCountries() {
