@@ -41,8 +41,29 @@ export class DelegationsService {
       .finally(async () => this.prisma.$disconnect());
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} delegation`;
+  async findOne(id: number) {
+    try {
+      let delegation = await this.prisma.delegation.findUnique({
+        where: { id },
+        select: {
+          id: true,
+          address: true,
+          city_id: true,
+          description: true,
+          email: true,
+          latitude: true,
+          longitude: true,
+          name: true,
+          phone: true,
+          image: true,
+        },
+      });
+      if (delegation) {
+        return delegation;
+      }
+    } catch (err) {
+      throw new NotFoundException("Delegation don't found or dont exist");
+    }
   }
 
   async update(id: number, updateDelegationDto: UpdateDelegationDto) {
