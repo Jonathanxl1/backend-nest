@@ -21,7 +21,7 @@ export class UserService {
     try {
       let user = await this.prisma.user.create({
         data: { email, password: hash },
-        select: { email: true, app_id: true, password: true },
+        select: { id: true, email: true, app_id: true },
       });
       return user;
     } catch (err) {
