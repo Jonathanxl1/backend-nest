@@ -1,85 +1,109 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# Backend nest
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+Backend nestjs para prueba tecnica
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## Tabla de Contenidos
 
-## Description
+- [Library Versions](#setup)
+- [Setup](#setup)
+- [Usage](#usage)
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## Library Versions
 
-## Project setup
+- **Nestjs**: `^10.2.0`
+- **Typescript**: `5.1.3`
+- **Nestjs/jwt**: `^10.2.27`
+- **Prisma**: `^6.1.0`
 
-```bash
-$ npm install
+## Setup
+
+Previamente para poder realizar las pruebas en entorno de desarrollo correspondientes se necesita crear un archivo `.env` para poder usar la aplicacion dejo los valores que se necesitan
+
+```env
+POSTGRES_DBNAME=<DB_NAME>
+POSTGRES_USER=<DB_USER>
+POSTGRES_PASSWORD=<DB_PASSWORD>
+POSTGRES_PORT=<DB_PORT>
+
+DATABASE_URL=postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@localhost:${POSTGRES_PORT}/${POSTGRES_DBNAME}
+JWT_SECRET=<JWT_SECRET>
+
 ```
 
-## Compile and run the project
+Para Instalar:
 
 ```bash
-# development
-$ npm run start
+# npm
+npm install
 
-# watch mode
-$ npm run start:dev
+# pnpm
+pnpm install
 
-# production mode
-$ npm run start:prod
+# yarn
+yarn install
+
+# bun
+bun install
 ```
 
-## Run tests
+## Development Server
+
+Start the development server on `http://localhost:3000`:
 
 ```bash
-# unit tests
-$ npm run test
+# npm
+npm run start:dev
 
-# e2e tests
-$ npm run test:e2e
+# pnpm
+pnpm run start:dev
 
-# test coverage
-$ npm run test:cov
+# yarn
+yarn start:dev
+
+# bun
+bun run start:dev
 ```
 
-## Resources
+## Production
 
-Check out a few resources that may come in handy when working with NestJS:
+Build the application for production:
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+```bash
+# npm
+npm run start:prod
 
-## Support
+# pnpm
+pnpm run start:prod
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+# yarn
+yarn start:prod
 
-## Stay in touch
+# bun
+bun run start:prod
+```
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+## Usage
 
-## License
+Despues de creado el archivo `.env` con las respectivas variable y haber instalado las depencias correspondientes, ejecutas en folder correspondiente el comando docker compose up -d para ejecutar el archivo`docker-compose.yml` para configurar la base de datos en Postgres y poder ejecutar lo cambios correspondiente, siguiente a eso vamos a ejecutar el comando `npm run migrate` una configuracion que ejecuta con Prisma la creacion de tablas y lo necesario para interactuar con las base de datos.
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+Por consiguiente sin registro alguno de usuario se ha creado un endpoint `/signup` que se puede usar para registrar el usuario usando postman.
+
+```json
+{
+  "email": "ejemplo@email.com",
+  "password": "pass"
+}
+```
+
+Para visualizar los datos o interactuar con GUI puede ejecutar el command `npx prisma studio` abrira un pagina en el sitio https://localhost:5555 para interatuar con los schemas y registrar datos.
+
+Realizado esto se procede a iniciar sesion desde el endpoint `/login` con los mismos datos registrados y el cual devolvera un jwt token para usar en la aplicacion, se debe agregar en la cabecera de las peticions `Authorization: Bearer <token>`.
+
+Ya lo demas servicios retornaran resultados o indicaran que no esta autorizado.
+
+## Pending
+
+Lista de pendiente que no se pudieron resolver durante el desarrollo de la prueba
+
+- [ ] Agregar Image en el storage del servidor
+- [ ] Logica para enviroment de producion y desarrollo
