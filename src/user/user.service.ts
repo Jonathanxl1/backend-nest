@@ -49,4 +49,21 @@ export class UserService {
       throw new NotFoundException('Not Found Email');
     }
   }
+
+  async findAppId(app_id: string) {
+    try {
+      let user = await this.prisma.user.findFirst({
+        where: { app_id },
+        select: { app_id: true },
+      });
+
+      if (!user) {
+        throw new ForbiddenException('Not Found Company');
+      }
+
+      return user;
+    } catch (err) {
+      throw new NotFoundException('Not Found Company');
+    }
+  }
 }
