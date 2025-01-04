@@ -1,10 +1,17 @@
-import { Controller, Get, Param, ParseIntPipe } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Param,
+  ParseIntPipe,
+  UseGuards,
+} from '@nestjs/common';
 import { LocationsService } from './locations.service';
+import { AuthGuard } from '@nestjs/passport';
 
+@UseGuards(AuthGuard('jwt'))
 @Controller()
 export class LocationsController {
   constructor(private locationsService: LocationsService) {}
-
   @Get('/countries')
   getCountries() {
     return this.locationsService.getCountries();

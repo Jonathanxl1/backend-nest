@@ -6,11 +6,14 @@ import {
   Param,
   Delete,
   Put,
+  UseGuards,
 } from '@nestjs/common';
 import { DelegationsService } from './delegations.service';
 import { CreateDelegationDto } from './dto/create-delegation.dto';
 import { UpdateDelegationDto } from './dto/update-delegation.dto';
+import { AuthGuard } from '@nestjs/passport';
 
+@UseGuards(AuthGuard('jwt'))
 @Controller('sucursal')
 export class DelegationsController {
   constructor(private readonly delegationsService: DelegationsService) {}
