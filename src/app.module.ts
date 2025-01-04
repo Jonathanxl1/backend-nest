@@ -6,6 +6,8 @@ import { DbModule } from './db/db.module';
 import { ConfigModule } from '@nestjs/config';
 import { UserModule } from './user/user.module';
 import { LocationsModule } from './locations/locations.module';
+import { DelegationsModule } from './delegations/delegations.module';
+import { CompanyModule } from './company/company.module';
 import config from './config/config';
 
 @Module({
@@ -19,6 +21,8 @@ import config from './config/config';
     DbModule,
     UserModule,
     LocationsModule,
+    DelegationsModule,
+    CompanyModule,
   ],
   controllers: [AppController],
   providers: [AppService],
