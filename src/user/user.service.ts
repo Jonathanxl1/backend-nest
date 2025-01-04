@@ -34,11 +34,19 @@ export class UserService {
   }
 
   async findUser(email: UserDTO['email']) {
-    let user = await this.prisma.user.findUnique({ where: { email } });
-    if (!user) {
+    try {
+      let user = await this.prisma.user.findUnique({
+        where: { email },
+        select: { id: true, email: true, password: true, app_id: true },
+      });
+
+      if (!user) {
+        throw new ForbiddenException('Not Found Email');
+      }
+
+      return user;
+    } catch (err) {
       throw new NotFoundException('Not Found Email');
     }
-
-    return user;
   }
 }
