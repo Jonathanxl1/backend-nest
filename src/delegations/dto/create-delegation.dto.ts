@@ -21,7 +21,7 @@ export class CreateDelegationDto {
   longitude: number;
 
   @IsOptional()
-  telephone: number;
+  phone: string;
 
   @IsOptional()
   address: string;
