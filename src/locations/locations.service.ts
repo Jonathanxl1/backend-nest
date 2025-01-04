@@ -36,7 +36,7 @@ export class LocationsService {
       throw new NotFoundException('Country Not Found');
     }
 
-    return data;
+    return data.flat();
   }
 
   getCitiesBy(deparmentId: StateDTO['id']) {
@@ -49,6 +49,6 @@ export class LocationsService {
       throw new NotFoundException('Deparment Not Found');
     }
 
-    return data;
+    return data.flat();
   }
 }
