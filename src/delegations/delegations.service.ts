@@ -13,15 +13,12 @@ export class DelegationsService {
   constructor(private prisma: DbService) {}
 
   async create(createDelegationDto: CreateDelegationDto) {
-    let { telephone, ...rest } = createDelegationDto;
-    let phone = String(telephone);
-
     console.log(createDelegationDto);
 
     try {
       let delegation = await this.prisma.delegation
         .create({
-          data: { ...rest, phone },
+          data: { ...createDelegationDto },
         })
         .finally(async () => await this.prisma.$disconnect());
 
