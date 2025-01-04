@@ -5,8 +5,8 @@ import { CompanyService } from './company.service';
 export class CompanyController {
   constructor(private companyService: CompanyService) {}
 
-  @Get(':id')
-  validateAppId(@Param('id', ParseIntPipe) id: number) {
-    return this.companyService;
+  @Get(':appId')
+  validateAppId(@Param('appId') appId: string) {
+    return this.companyService.getData(appId);
   }
 }
