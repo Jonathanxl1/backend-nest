@@ -86,7 +86,7 @@ bun run start:prod
 
 Despues de creado el archivo `.env` con las respectivas variable y haber instalado las depencias correspondientes, ejecutas en folder correspondiente el comando docker compose up -d para ejecutar el archivo`docker-compose.yml` para configurar la base de datos en Postgres y poder ejecutar lo cambios correspondiente, siguiente a eso vamos a ejecutar el comando `npm run migrate` una configuracion que ejecuta con Prisma la creacion de tablas y lo necesario para interactuar con las base de datos.
 
-Por consiguiente sin registro alguno de usuario se ha creado un endpoint `/signup` que se puede usar para registrar el usuario usando postman.
+Por consiguiente sin registro alguno de usuario se ha creado un endpoint `/auth/signup` que se puede usar para registrar el usuario usando postman.
 
 ```json
 {
@@ -97,7 +97,7 @@ Por consiguiente sin registro alguno de usuario se ha creado un endpoint `/signu
 
 Para visualizar los datos o interactuar con GUI puede ejecutar el command `npx prisma studio` abrira un pagina en el sitio https://localhost:5555 para interatuar con los schemas y registrar datos.
 
-Realizado esto se procede a iniciar sesion desde el endpoint `/login` con los mismos datos registrados y el cual devolvera un jwt token para usar en la aplicacion, se debe agregar en la cabecera de las peticions `Authorization: Bearer <token>`.
+Realizado esto se procede a iniciar sesion desde el endpoint `/auth/login` con los mismos datos registrados y el cual devolvera un jwt token para usar en la aplicacion, se debe agregar en la cabecera de las peticions `Authorization: Bearer <token>`.
 
 Ya lo demas servicios retornaran resultados o indicaran que no esta autorizado.
 
